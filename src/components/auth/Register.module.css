@@ -50,6 +50,26 @@
     color: #333;
 }
 
+.error {
+    background-color: #ffebee;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.success {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
 .form {
     display: flex;
     flex-direction: column;
@@ -70,6 +90,16 @@
     background-color: #f8f8f8;
 }
 
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkboxGroup input {
+    margin-right: 8px;
+}
+
 .button {
     background-color: #ff6b6b;
     color: white;
@@ -84,6 +114,11 @@
 
 .button:hover {
     background-color: #ff5252;
+}
+
+.button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
 .divider {
@@ -130,15 +165,15 @@
 }
 
 .googleButton {
-    border-color: #4285f4;
+    border-color: #ff6b6b;
 }
 
 .googleButton .socialIcon {
-    color: #4285f4;
+    color: #ff6b6b;
 }
 
 .googleButton:hover {
-    background-color: #4285f4;
+    background-color: #ff5252;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(66, 133, 244, 0.3);
@@ -149,15 +184,15 @@
 }
 
 .facebookButton {
-    border-color: #1877f2;
+    border-color: #ff6b6b;
 }
 
 .facebookButton .socialIcon {
-    color: #1877f2;
+    color: #ff6b6b;
 }
 
 .facebookButton:hover {
-    background-color: #1877f2;
+    background-color: #ff5252;
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(24, 119, 242, 0.3);
