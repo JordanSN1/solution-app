@@ -20,21 +20,19 @@
     "@types/react-dom": "^19.1.2",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
-    "buffer": "^6.0.3",
     "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
+    "lucide-react": "^0.488.0",
     "mysql2": "^3.14.0",
     "process": "^0.11.10",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.5.0",
     "react-scripts": "5.0.1",
-<<<<<<< HEAD
     "solution-app": "file:",
-=======
     "stream-browserify": "^3.0.0",
     "timers-browserify": "^2.0.12",
->>>>>>> 2e30175c84240a72285817ec2d0d31fc93d3f5d9
     "typescript": "^4.9.5",
     "url": "^0.11.3",
     "util": "^0.12.5",
