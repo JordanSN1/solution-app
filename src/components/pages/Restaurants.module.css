@@ -1,0 +1,246 @@
+/* Image principale et titre */
+.image img {
+    width: 100%;
+    height: 500px;
+}
+
+.imageTitle {
+    font-size: 5rem;
+    color: #F3274C;
+    margin-top: -32rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #F3274C;
+    margin-top: 250px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Liste des restaurants */
+.restaurantList {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+    margin-top: 5px;
+    margin-left: 20px;
+    max-width: 1200px;
+    padding: 2px;
+    border-radius: 5%;
+}
+
+.restaurantCard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.restaurantName {
+    font-size: 1.8rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.restaurantAddress,
+.restaurantLocation,
+.restaurantType {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+.restaurantType strong {
+    color: #F3274C;
+}
+
+/* Menu principal */
+.menulist {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    background-color: #ffffff;
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.menu:hover {
+    transform: translateY(-5px);
+}
+
+.menu img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 5px solid #FFD40D;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    object-fit: contain;
+}
+
+.menu:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 212, 13, 0.3);
+}
+
+.menuTitle {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.menudescription {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+@keyframes menuAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu {
+    animation: menuAppear 0.5s ease forwards;
+    opacity: 0;
+}
+
+
+
+.menulistchiken {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.menuchiken {
+    display: flex;
+    background-color: #fff;
+    border-radius: 12px;
+    max-width: 800px;
+    width: 100%;
+}
+
+.menuchiken img {
+    width: 550px;
+    height: 350px;
+    border-radius: 10px;
+    margin-left: -150px;
+    margin-right: 70px;
+}
+
+.menuchikenTitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #212121;
+}
+
+.menuchikennom {
+    font-size: 16px;
+    color: #00A149;
+}
+
+.menuchikendescription {
+    font-size: 16px;
+    color: #5C5C5B;
+}
+
+.menuchikenText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.chikentime {
+    display: grid;
+    grid-template-columns: repeat(4, 5fr);
+    gap: 1px;
+}
+
+.menuchikenDays { color: #FFD40D; }
+.menuchikendays { color: #212121; }
+.menuchikenHours { color: #FFD40D; }
+.menuchikenhours { color: #212121; }
+.menuchikenMinu { color: #FFD40D; }
+.menuchikenmin { color: #212121; }
+.menuchikenSec { color: #FFD40D; }
+.menuchikensec { color: #212121; }
+
+
+.menupictures {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.menupictures img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+
+.menuchikenbutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #00A651;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 166, 81, 0.2);
+    width: fit-content;
+}
+
+.menuchikenbutton::before {
+    content: '🚚';
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.menuchikenbutton:hover {
+    background-color: #008c44;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 166, 81, 0.3);
+}
+
+.menuchikenbutton:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 166, 81, 0.2);
+}
+      
