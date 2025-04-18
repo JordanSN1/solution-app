@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import restaurants from "../data.json/restaurants-casvp.json";
 import  picture_restaurant from '../../assets/images/picture_restaurant.jpg';
 import  kfcapres10ansabsenceretourdoubledown from '../../assets/images/kfcapres10ansabsenceretourdoubledown.jpg';
@@ -9,6 +9,52 @@ import  AlfrescoDining from '../../assets/images/Alfresco Dining.jpg';
 import styles from './Restaurants.module.css';
 
 function Restaurants() {
+  const [likes, setLikes] = useState({});
+  const [timeLeft, setTimeLeft] = useState({
+    days: 30,
+    hours: 22,
+    minutes: 48,
+    seconds: 22
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prevTime => {
+        const newTime = { ...prevTime };
+        
+        if (newTime.seconds > 0) {
+          newTime.seconds -= 1;
+        } else {
+          newTime.seconds = 59;
+          if (newTime.minutes > 0) {
+            newTime.minutes -= 1;
+          } else {
+            newTime.minutes = 59;
+            if (newTime.hours > 0) {
+              newTime.hours -= 1;
+            } else {
+              newTime.hours = 23;
+              if (newTime.days > 0) {
+                newTime.days -= 1;
+              }
+            }
+          }
+        }
+        
+        return newTime;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleLike = (id) => {
+    setLikes(prevLikes => ({
+      ...prevLikes,
+      [id]: !prevLikes[id]
+    }));
+  };
+
   return (
     <div>
       <div className={styles.image}>
@@ -25,18 +71,35 @@ function Restaurants() {
       <h1 className={styles.title}>🍽️ Nos Restaurants</h1>
       <div className={styles.restaurantList}>
         {Array.isArray(restaurants) && restaurants.map((resto, index) => {
-          // Vérifie que le restaurant est valide (pas null ou incomplet)
           if (!resto.nom_restaurant || !resto.adresse) return null;
           return (
-            <div key={index} className={styles.restaurantCard}>
-              <h2 className={styles.restaurantName}>{resto.nom_restaurant}</h2>
-              <p className={styles.restaurantAddress}>{resto.adresse}</p>
-              <p className={styles.restaurantLocation}>
-                {resto.code} – {resto.ville}
-              </p>
-              <p className={styles.restaurantType}>
-                <strong>Type :</strong> {resto.type}
-              </p>
+            <div 
+              key={index} 
+              className={styles.restaurantCard}
+              style={{"--card-index": index}}
+            >
+              <button 
+                className={`${styles.likeButton} ${likes[index] ? styles.liked : ''}`}
+                onClick={() => handleLike(index)}
+                aria-label="Like"
+              >
+                <svg 
+                  viewBox="0 0 24 24" 
+                  className={styles.heartIcon}
+                >
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              </button>
+              <div className={styles.restaurantInfo}>
+                <h2 className={styles.restaurantName}>{resto.nom_restaurant}</h2>
+                <p className={styles.restaurantAddress}>{resto.adresse}</p>
+                <p className={styles.restaurantLocation}>
+                  {resto.code} – {resto.ville}
+                </p>
+                <p className={styles.restaurantType}>
+                  <strong>Type :</strong> {resto.type}
+                </p>
+              </div>
             </div>
           );
         })}
@@ -92,63 +155,64 @@ function Restaurants() {
         </div>
       </div>
       <div className={styles.menulistchiken}>
-  <div className={styles.menuchiken}>
-    <img
-      src={kfcapres10ansabsenceretourdoubledown}
-      alt="Restaurants avec vue à Paris"
-    />
-    <div className={styles.menuchikenText}>
-      <h4 className={styles.menuchikennom}>Crispy, Every Bite Taste </h4>
-      <h1 className={styles.menuchikenTitle}>Chiken hot
-      wing & French fries</h1>
-      <h3 className={styles.menuchikendescription}>
-      Wheat tortilla with spicy chicken bites, cheese sauce
-      tomatoes and soft cheese
-      </h3>
-      <div className={styles.chikentime}>
-        <div className={styles.menuchikendays}>
-          <h1 className={styles.menuchikenDays}>30</h1>
-          <h3 className={styles.menuchikendays}> Days </h3>
+        <div className={styles.menuchiken}>
+          <img
+            src={kfcapres10ansabsenceretourdoubledown}
+            alt="KFC Hot Wings Special"
+          />
+          <div className={styles.menuchikenText}>
+            <h4 className={styles.menuchikennom}>Crispy, Every Bite Taste</h4>
+            <h1 className={styles.menuchikenTitle}>
+              Chiken hot wing & French fries
+            </h1>
+            <h3 className={styles.menuchikendescription}>
+              Wheat tortilla with spicy chicken bites, cheese sauce
+              tomatoes and soft cheese
+            </h3>
+            <div className={styles.chikentime}>
+              <div className={styles.timeBlock}>
+                <h1 className={styles.timeNumber}>{timeLeft.days}</h1>
+                <h3 className={styles.timeLabel}>Days</h3>
+              </div>
+              <div className={styles.timeBlock}>
+                <h1 className={styles.timeNumber}>{timeLeft.hours}</h1>
+                <h3 className={styles.timeLabel}>Hours</h3>
+              </div>
+              <div className={styles.timeBlock}>
+                <h1 className={styles.timeNumber}>{timeLeft.minutes}</h1>
+                <h3 className={styles.timeLabel}>Min</h3>
+              </div>
+              <div className={styles.timeBlock}>
+                <h1 className={styles.timeNumber}>{timeLeft.seconds}</h1>
+                <h3 className={styles.timeLabel}>Sec</h3>
+              </div>
+            </div>
+            <button onClick={() => alert('Commande en cours...')} className={styles.menuchikenbutton}>
+              <span className={styles.buttonIcon}>🚚</span>
+              Order Now
+            </button>
+          </div>
         </div>
-        <div className={styles.menuchikendays}>
-          <h1 className={styles.menuchikenHours}>22</h1>
-          <h3 className={styles.menuchikenhours}> Hours </h3>
-        </div>
-        <div className={styles.menuchikendays}>
-          <h1 className={styles.menuchikenMinu}>48</h1>
-          <h3 className={styles.menuchikenmin}> Min </h3>
-        </div>
-        <div className={styles.menuchikendays}>
-          <h1 className={styles.menuchikenSec}>22</h1>
-          <h3 className={styles.menuchikensec}> Sec </h3>
-        </div>
-        <button onClick={() => alert('Réserver maintenant')} className={styles.menuchikenbutton}>Order Now </button>
-      </div>   
+      </div>
+      <div className={styles.menupictures}>
+        <img
+          src={picture_restaurant}
+          alt="Restaurants avec vue à Paris"
+        />
+        <img
+          src={picture_restaurant}
+          alt="Restaurants avec vue à Paris"
+        />
+        <img
+          src={picture_restaurant}
+          alt="Restaurants avec vue à Paris"
+        />
+        <img
+          src={picture_restaurant}
+          alt="Restaurants avec vue à Paris"
+        />
+      </div>
     </div>
-  </div>
-</div>
-<div className={styles.menupictures}>
-  <img
-    src={picture_restaurant}
-    alt="Restaurants avec vue à Paris"
-  />
-  <img
-    src={picture_restaurant}
-    alt="Restaurants avec vue à Paris"
-  />
-  <img
-    src={picture_restaurant}
-    alt="Restaurants avec vue à Paris"
-  />
-  <img
-    src={picture_restaurant}
-    alt="Restaurants avec vue à Paris"
-  />
-  
-</div> 
-</div>
-
-  
   );
 }
 
